@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kvitansiya yaratish</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kvitansiya yaratish</h1>
+            <p>Ushbu sahifa orqali siz sudga murojaat qilganlik uchun to'lov kvitansiyalarini yaratishingiz mumkin</p>
+        </div>
+        <div class="form-container">
+            <div class="tab">
+                <button class="tablinks active" onclick="openForm(event, 'JismoniyShaxs')">Jismoniy shaxs</button>
+                <button class="tablinks" onclick="openForm(event, 'YuridikShaxs')">Yuridik shaxs</button>
+            </div>
+            <div id="JismoniyShaxs" class="tabcontent" style="display: block;">
+                <form id="individualForm">
+                    <label><input type="checkbox" id="uzbekistanCitizen" name="uzbekistanCitizen" checked> O'zbekiston
+                        fuqarosi</label><br><br>
+                    <div class="tabcontentform">
+                        <div class="form-group">
+                            <input type="text" id="surname" name="surname" placeholder="Familiyangiz" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Ismingiz" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="middlename" name="middlename" placeholder="Sharifingiz" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="birthdate" name="birthdate" placeholder="Tug'ilgan sanangiz"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="passportSeries" name="passportSeries" placeholder="Passport seriyasi"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="passportNumber" name="passportNumber" placeholder="Passport raqami"
+                                required>
+                        </div>
+                        <div class="form-group full-width">
+                            <input type="text" id="address" name="address" placeholder="Yashash manzilingiz" required>
+                        </div>
+                        <!-- Add other form fields as necessary -->
+                        <div class="form-group">
+                            <select id="courtType" name="courtType" required>
+                                <option value="" disabled selected>Sud turi *</option>
+                                <!-- Add options here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="courtRegion" name="courtRegion" required>
+                                <option value="" disabled selected>Sud hududi *</option>
+                                <!-- Add options here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="court" name="court" required>
+                                <option value="" disabled selected>Sud *</option>
+                                <!-- Add options here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="paymentType" name="paymentType" required>
+                                <option value="" disabled selected>To'lov turi *</option>
+                                <!-- Add options here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="paymentPurpose" name="paymentPurpose" required>
+                                <option value="" disabled selected>To'lov maqsadi *</option>
+                                <!-- Add options here -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="paymentAmount" name="paymentAmount" placeholder="To'lov miqdori"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <p>Qo‘shimcha ma’lumot</p>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <textarea id="additionalInfo" name="additionalInfo"
+                                placeholder="To'lov haqida qo'shimcha ma'lumot" maxlength="100"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="YuridikShaxs" class="tabcontent">
+                <form id="legalEntityForm" class="tabcontentform">
+                    <label><input type="checkbox" id="uzbekistanCitizen" name="uzbekistanCitizen" checked> O'zbekiston
+                        fuqarosi</label><br><br>
+                    <!-- Form for Yuridik Shaxs -->
+                    <div class="form-group">
+                        <input type="text" id="companyname" name="companyname" placeholder="Tashkilot nomi"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="companystir" name="companystir" placeholder="STIR"
+                            required>
+                    </div>
+                    <div class="form-group full-width">
+                        <input type="text" id="company" name="company" placeholder="Korxona manzilingiz" required>
+                    </div>
+                    <!-- Add other form fields as necessary -->
+                    <div class="form-group">
+                        <select id="courtType" name="courtType" required>
+                            <option value="" disabled selected>Sud turi *</option>
+                            <!-- Add options here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="courtRegion" name="courtRegion" required>
+                            <option value="" disabled selected>Sud hududi *</option>
+                            <!-- Add options here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="court" name="court" required>
+                            <option value="" disabled selected>Sud *</option>
+                            <!-- Add options here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="paymentType" name="paymentType" required>
+                            <option value="" disabled selected>To'lov turi *</option>
+                            <!-- Add options here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="paymentPurpose" name="paymentPurpose" required>
+                            <option value="" disabled selected>To'lov maqsadi *</option>
+                            <!-- Add options here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="paymentAmount" name="paymentAmount" placeholder="To'lov miqdori"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <p>Qo‘shimcha ma’lumot</p>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <textarea id="additionalInfo" name="additionalInfo"
+                            placeholder="To'lov haqida qo'shimcha ma'lumot" maxlength="100"></textarea>
+                    </div <!-- Add other form fields as necessary -->
+                </form>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn-clear" onclick="clearForm()">Tozalash</button>
+                <button type="button" class="btn-submit" onclick="submitForm()">Yaratish</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
