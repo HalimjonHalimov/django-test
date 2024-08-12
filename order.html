@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kvitansiya buyutmalari</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<!-- Styles -->
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+
+    }
+
+    body {
+        font-family: "Arial", sans-serif;
+        background-color: #eff3f8;
+        font-weight: 400;
+        font-size: 14px;
+        color: #000;
+    }
+
+    .container {
+        width: 40%;
+        margin: 10px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* border:1px solid #6366F1; */
+        box-shadow: 0 0 4px rgb(99, 102, 241);
+    }
+
+    .header {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .header p {
+        color: #777;
+        font-size: 14px;
+    }
+
+    .header-bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-size: 14px;
+        font-weight: 600;
+        color: #000;
+    }
+
+    .header-b-l,
+    .header-b-r {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .header-b-r {
+        color: #777;
+    }
+
+    .header-payment {
+        background: rgb(236, 180, 77);
+        padding: 4px 6px;
+        border-radius: 4px;
+    }
+
+    .details,
+    .payment-details,
+    .total-details {
+        margin-bottom: 20px;
+    }
+
+    .details h2,
+    .payment-details h2,
+    .total-details h2 {
+        font-size: 1.2em;
+        color: #6c63ff;
+    }
+
+    .payment-details table,
+    .total-details table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    .payment-details td,
+    .total-details td {
+        padding: 8px;
+        border-bottom: 1px solid #ecf0f1;
+    }
+
+    .file-download {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .file-download a {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px ;
+        background-color: #6c63ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .payment-methods {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .qr h3,
+    .e-payment h3 {
+        font-size: 1em;
+        margin-bottom: 10px;
+        color: #6c63ff;
+    }
+
+    .qr img,
+    .e-payment img {
+        width: 100px;
+    }
+
+    .e-payment .logos img {
+        margin-right: 10px;
+    }
+
+    .back-icon {
+        font-size: 2em;
+        color: #6c63ff;
+        cursor: pointer;
+    }
+</style>
+<!-- Styles -->
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <h1>Kvitansiya ma'lumoti</h1>
+                <p>Ushbu sahifa orqali siz billing.sud.uz axborot tizimida yaratilgan kvitansiya holatini
+                    tekshirishingiz mumkin</p>
+            </div>
+            <div class="header-bottom">
+                <div class="header-b-l">
+                    <div>YARATILGAN SANA</div>
+                    <div>KVITANSIYA RAQAMI</div>
+                    <div>AMAL QILISH MUDDATI</div>
+                    <div>TOLQOV HOLATI</div>
+                </div>
+                <div class="header-b-r">
+                    <div>11.08.2024</div>
+                    <div>242240849856</div>
+                    <div>10.09.2024</div>
+                    <div class="header-payment">TO'LANMAGAN</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="details">
+            <h2>Kvitansiya Egasi</h2>
+            <p>salimjon salimov salim o'g'li</p>
+        </div>
+
+        <div class="payment-details">
+            <h2>Kvitansiya ma'lumotlari</h2>
+            <table>
+                <tr>
+                    <td>To'lov turi</td>
+                    <td>Jinoyat ishlari bo'yicha Yakkasaroy tumani sudi</td>
+                </tr>
+                <tr>
+                    <td>Sud</td>
+                    <td>40148225231234234</td>
+                </tr>
+                <tr>
+                    <td>Shaxsiy hisob raqam</td>
+                    <td>40148225231234234</td>
+                </tr>
+                <tr>
+                    <td>Qo'shimcha ma'lumot</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="total-details">
+            <h2>To'lov ma'lumotlari</h2>
+            <table>
+                <tr>
+                    <td>To'lov miqdori</td>
+                    <td>12,000.00</td>
+                </tr>
+                <tr>
+                    <td>To'langan summa</td>
+                    <td>0.00</td>
+                </tr>
+                <tr>
+                    <td>Qoldiq summa</td>
+                    <td>12,000.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="file-download">
+            <a href="#" download="kvitansiya.pdf">242240849856-kvitansiya.pdf <i class="fas fa-download"></i> </a>
+        </div>
+
+        <div class="payment-methods">
+            <div class="qr">
+                <h3>QR-To'lov</h3>
+                <img src="qr-code.png" alt="QR code">
+            </div>
+            <div class="e-payment">
+                <h3>Elektron to'lov tizimlari</h3>
+                <div class="logos">
+                    <img src="payme-logo.png" alt="Payme">
+                    <img src="click-logo.png" alt="Click">
+                    <img src="upay-logo.png" alt="Upay">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

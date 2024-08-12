@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kvitansiya malumotlari</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<!-- Styles -->
+<style>
+    body {
+        font-family: "Arial", sans-serif;
+        background-color: #eff3f8;
+        font-weight: 400;
+        font-size: 14px;
+        color: #000;
+
+    }
+
+    .container {
+        width: 40%;
+        margin: auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* border:1px solid #6366F1; */
+        box-shadow: 0 0 4px rgb(99, 102, 241);
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .header p {
+        color: #777;
+        font-size: 14px;
+    }
+
+    .tab {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .tab button {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 5px 5px 0 0;
+        margin-right: 5px;
+    }
+
+    .tab button.active {
+        border: 1px solid rgb(99, 102, 241);
+    }
+
+    .tabcontent {
+        display: none;
+        padding: 20px;
+        border-radius: 0 0 5px 5px;
+    }
+
+
+    .btn-group {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .btn-clear,
+    .btn-submit {
+        background-color: #ff9801;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        cursor: pointer;
+        width: 25%;
+        margin-top: 20px;
+        margin-right: 2%;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn-submit {
+        background-color: #6266f0;
+    }
+
+    .btn-clear:hover,
+    .btn-submit:hover {
+        opacity: 0.8;
+    }
+
+    .btn-clear:disabled,
+    .btn-submit:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    .order-title {
+        color: #777;
+        font-weight: 400;
+        font-size: 24px;
+        margin-bottom: 10px;
+
+    }
+
+    .order-info {
+        font-size: 14px;
+        color: #777;
+        font-weight: 400;
+    }
+
+    .table-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background-color: #e0e0e0;
+    }
+
+    th,
+    td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    th {
+        background-color: #f9f9f9;
+        color: #555;
+        font-weight: bold;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .pagination {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+
+        border-top: 1px solid #ccc;
+    }
+
+    .page-number {
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #777;
+        color: white;
+        border-radius: 4px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+    .page-number:hover {
+        background-color: #6266f0;
+    }
+
+    .succes {
+        color: #ff9801;
+    }
+
+    .feilure {
+        color: #6266f0;
+    }
+
+    .table-container button {
+        padding: 6px 12px;
+        background-color: #ff9801;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .table-container button:hover {
+        opacity: 0.8;
+    }
+
+    /* Media queries for responsiveness */
+    @media only screen and (max-width: 480px) {
+
+        /* 480px va undan kichik ekranlar uchun kod */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (max-width: 576px) {
+
+        /* 576px va undan kichik ekranlar uchun kod */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        /* 768px va undan kichik ekranlar uchun kod */
+        /* 576px va undan kichik ekranlar uchun kod */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (max-width: 992px) {
+        /* 992px va undan kichik ekranlar uchun kod */
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+    }
+</style>
+<!-- Styles -->
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Kvitansiya yaratish</h1>
+            <p>Ushbu sahifa orqali siz sudga murojaat qilganlik uchun to'lov kvitansiyalarini yaratishingiz mumkin</p>
+        </div>
+        <div class="form-container">
+            <div class="tab">
+                <button class="tablinks active" onclick="openForm(event, 'JismoniyShaxs')">Jismoniy shaxs</button>
+                <button class="tablinks" onclick="openForm(event, 'YuridikShaxs')">Yuridik shaxs</button>
+                <button class="tablinks" onclick="openForm(event, 'Advakat')">Advakat</button>
+            </div>
+            <div id="JismoniyShaxs" class="tabcontent" style="display: block;">
+                <div class="order-title">Buyurtmalar ro'yxati</div>
+                <div class="order-info">Buyurtmalar topilmadi.</div>
+            </div>
+            <div id="YuridikShaxs" class="tabcontent">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Shartnoma ID</th>
+                                <th>F.I.O</th>
+                                <th>Shaxs turi</th>
+                                <th>Ekspertiza turi</th>
+                                <th>Izoh</th>
+                                <th>Shartnoma tuzilgan sana</th>
+                                <th>Shartnoma to'lovi(so'm)</th>
+                                <th>Holati</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data rows will go here -->
+                            <tr>
+                                <td>1</td>
+                                <td>Salimov Salim</td>
+                                <td>Yuridik</td>
+                                <td>Texnik</td>
+                                <td>Izoh yo'q</td>
+                                <td>01.08.2024</td>
+                                <td>1,200,000</td>
+                                <td class="succes">Aktiv</td>
+                                <td><button>Action</button></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Salimov Salim</td>
+                                <td>Yuridik</td>
+                                <td>Texnik</td>
+                                <td>Izoh yo'q</td>
+                                <td>01.08.2024</td>
+                                <td>1,200,000</td>
+                                <td class="feilure">Aktiv</td>
+                                <td><button>Action</button></td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <span class="page-number">Prew</span>
+                        <span class="page-number">1</span>
+                        <span class="page-number">Next</span>
+                        <!-- Add more page numbers if needed -->
+                    </div>
+                </div>
+            </div>
+            <div id="Advakat" class="tabcontent">
+
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn-clear" onclick="clearForm()">Tozalash</button>
+                <button type="button" class="btn-submit" onclick="submitForm()">Yaratish</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function openForm(evt, formName) {
+        var i, tabcontent, tablinks;
+
+        // Hide all tab contents
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove the active class from all tablinks
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab and add an active class to the button that opened the tab
+        document.getElementById(formName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // No need to trigger a click event since we set the default display in HTML
+    document.getElementById("JismoniyShaxs").style.display = "block";
+
+    function clearForm() {
+        document.getElementById('individualForm').reset();
+        document.getElementById('legalEntityForm').reset();
+    }
+
+    function submitForm() {
+        var formData;
+        if (document.querySelector('.tablinks.active').innerText === "Jismoniy shaxs") {
+            formData = $('#individualForm').serialize();
+        } else {
+            formData = $('#legalEntityForm').serialize();
+        }
+        // You can now submit formData using AJAX or any other method
+        console.log(formData);
+    }
+
+</script>
+
+</html>

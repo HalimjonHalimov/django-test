@@ -5,12 +5,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kvitansiya yaratish</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts.js"></script>
+
 </head>
 
+<!-- Styles -->
+<style>
+    body {
+        font-family: "Arial", sans-serif;
+        background-color: #eff3f8;
+        font-weight: 400;
+        font-size: 14px;
+        color: #000;
+    }
+
+    .container {
+        width: 40%;
+        margin: auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* border:1px solid #6366F1; */
+        box-shadow: 0 0 4px rgb(99, 102, 241);
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .header p {
+        color: #777;
+        font-size: 14px;
+    }
+
+    .tab {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .tab button {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 5px 5px 0 0;
+        margin-right: 5px;
+    }
+
+    .tab button.active {
+        border: 1px solid rgb(99, 102, 241);
+    }
+
+    .tabcontent {
+        display: none;
+        padding: 20px;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .full-width {
+        grid-column: span 2;
+    }
+
+    .form-group p {
+        padding: 0;
+        margin: 0;
+        color: #6366f1;
+        font-weight: 600;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .btn-clear,
+    .btn-submit {
+        background-color: #ff9801;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        cursor: pointer;
+        width: 25%;
+        margin-top: 20px;
+        margin-right: 2%;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn-submit {
+        background-color: #6266f0;
+    }
+
+    .btn-clear:hover,
+    .btn-submit:hover {
+        opacity: 0.8;
+    }
+
+    .btn-clear:disabled,
+    .btn-submit:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    .tabcontentform {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .form-group {
+        width: 45%;
+        position: relative;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        padding: 8px;
+        font-size: 16px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        outline: none;
+        background: none;
+        resize: vertical;
+        /* For textarea resize behavior */
+    }
+
+    .form-group label {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        background-color: white;
+        padding: 0 5px;
+        color: #999;
+        transition: all 0.2s ease;
+        pointer-events: none;
+        font-size: 14px;
+    }
+
+    .form-group input:focus+label,
+    .form-group select:focus+label,
+    .form-group textarea:focus+label,
+    .form-group input:not(:placeholder-shown)+label,
+    .form-group select:not(:placeholder-shown)+label,
+    .form-group textarea:not(:placeholder-shown)+label {
+        top: 0;
+        left: 10px;
+        font-size: 12px;
+        color: #4A8BEE;
+        transform: translateY(-50%);
+    }
+
+    .form-group input:focus::placeholder,
+    .form-group textarea:focus::placeholder {
+        color: transparent;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #5B9CFF;
+    }
+
+    .form-group-info {
+        width: 100%;
+        margin-bottom: 1rem;
+        font-size: 24px;
+        font-weight: 600;
+        color: #4A8BEE;
+        grid-column: span 2;
+
+    }
+
+    .tabcontentform .span-2 {
+        width: 100%
+    }
+
+    /* Media queries for responsiveness */
+    @media only screen and (max-width: 480px) {
+
+        /* 480px va undan kichik ekranlar uchun kod */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-size: 12px;
+        }
+
+        .form-group-info {
+            font-size: 16px;
+        }
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (max-width: 576px) {
+
+        /* 576px va undan kichik ekranlar uchun kod */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-size: 12px;
+        }
+
+        .form-group-info {
+            font-size: 16px;
+        }
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        /* 768px va undan kichik ekranlar uchun kod */
+        /* 576px va undan kichik ekranlar uchun kod */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-size: 12px;
+        }
+
+        .form-group-info {
+            font-size: 16px;
+        }
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (max-width: 992px) {
+        /* 992px va undan kichik ekranlar uchun kod */
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-size: 12px;
+        }
+
+        .form-group-info {
+            font-size: 16px;
+        }
+
+        .btn-clear,
+        .btn-submit {
+            width: 50%;
+        }
+    }
+</style>
+<!-- Styles -->
+
 <body>
+
     <div class="container">
         <div class="header">
             <h1>Kvitansiya yaratish</h1>
@@ -20,141 +323,217 @@
             <div class="tab">
                 <button class="tablinks active" onclick="openForm(event, 'JismoniyShaxs')">Jismoniy shaxs</button>
                 <button class="tablinks" onclick="openForm(event, 'YuridikShaxs')">Yuridik shaxs</button>
+                <button class="tablinks" onclick="openForm(event, 'Advakat')">Advakat</button>
             </div>
             <div id="JismoniyShaxs" class="tabcontent" style="display: block;">
                 <form id="individualForm">
-                    <label><input type="checkbox" id="uzbekistanCitizen" name="uzbekistanCitizen" checked> O'zbekiston
-                        fuqarosi</label><br><br>
                     <div class="tabcontentform">
                         <div class="form-group">
-                            <input type="text" id="surname" name="surname" placeholder="Familiyangiz" required>
+                            <input type="text" id="lastname" name="lastname" placeholder=" " required>
+                            <label for="lastname">Familiyangiz</label>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Ismingiz" required>
+                            <input type="text" id="firstname" name="firstname" placeholder=" " required>
+                            <label for="firstname">Ismingiz</label>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="middlename" name="middlename" placeholder="Sharifingiz" required>
+                            <input type="text" id="fullname" name="fullname" placeholder=" " required>
+                            <label for="fullname">Sharifingiz</label>
                         </div>
                         <div class="form-group">
-                            <input type="date" id="birthdate" name="birthdate" placeholder="Tug'ilgan sanangiz"
-                                required>
+                            <input type="date" id="date" name="date" placeholder=" " required>
+                            <label for="date">Tug'ilgan sanangiz</label>
+                        </div>
+                        <div class="form-group-info">
+                            Yashash hududi
                         </div>
                         <div class="form-group">
-                            <input type="text" id="passportSeries" name="passportSeries" placeholder="Passport seriyasi"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="passportNumber" name="passportNumber" placeholder="Passport raqami"
-                                required>
-                        </div>
-                        <div class="form-group full-width">
-                            <input type="text" id="address" name="address" placeholder="Yashash manzilingiz" required>
-                        </div>
-                        <!-- Add other form fields as necessary -->
-                        <div class="form-group">
-                            <select id="courtType" name="courtType" required>
-                                <option value="" disabled selected>Sud turi *</option>
-                                <!-- Add options here -->
+                            <select id="country" name="country" required>
+                                <option value="_____" disabled selected hidden></option>
+                                <option value="uz">Uzbekistan</option>
+                                <option value="us">United States</option>
+                                <!-- More options... -->
                             </select>
+                            <label for="country">Viloyatingizni tanlang*</label>
                         </div>
                         <div class="form-group">
-                            <select id="courtRegion" name="courtRegion" required>
-                                <option value="" disabled selected>Sud hududi *</option>
-                                <!-- Add options here -->
+                            <select id="city" name="city" required>
+                                <option value="_____" disabled selected hidden></option>
+                                <option value="uz">Toshkent</option>
+                                <option value="us">Samarqand</option>
+                                <!-- More options... -->
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <select id="court" name="court" required>
-                                <option value="" disabled selected>Sud *</option>
-                                <!-- Add options here -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select id="paymentType" name="paymentType" required>
-                                <option value="" disabled selected>To'lov turi *</option>
-                                <!-- Add options here -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select id="paymentPurpose" name="paymentPurpose" required>
-                                <option value="" disabled selected>To'lov maqsadi *</option>
-                                <!-- Add options here -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="paymentAmount" name="paymentAmount" placeholder="To'lov miqdori"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <p>Qo‘shimcha ma’lumot</p>
+                            <label for="city">Shahar yoki tumaningizni tanlang</label>
                         </div>
 
-                        <div class="form-group full-width">
-                            <textarea id="additionalInfo" name="additionalInfo"
-                                placeholder="To'lov haqida qo'shimcha ma'lumot" maxlength="100"></textarea>
+                        <div class="form-group">
+                            <input type="text" id="homeaddress" name="homeaddress" placeholder=" " required>
+                            <label for="homeaddress">Uy manzilingizni kiriting</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="phonenumber" name="phonenumber" placeholder=" " required>
+                            <label for="phonenumber">Telefon raqamingiz</label>
+                        </div>
+                        <div class="form-group-info">
+                            Pasport ma'lumoti
+                        </div>
+                        <div class="form-group">
+                            <select id="idcard" name="idcard" required>
+                                <option value="_____" disabled selected hidden></option>
+                                <option value="aa">AA</option>
+                                <option value="ab">AB</option>
+                                <option value="ac">AC</option>
+                                <!-- More options... -->
+                            </select>
+                            <label for="idcard">Pasport seriyasi*</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="idcardnumber" name="idcardnumber" placeholder=" " required>
+                            <label for="idcardnumber">Passport raqamingiz*</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="idcardaddress" name="idcardaddress" placeholder=" " required>
+                            <label for="idcardaddress">Olgan manzilingiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="idcarddate" name="idcarddate" placeholder=" " required>
+                            <label for="idcarddate">Olgan sanangiz</label>
+                        </div>
+                        <div class="form-group-info">
+                            Ekspertiza haqida
+                        </div>
+                        <div class="form-group span-2">
+                            <select id="expert" name="expert" required>
+                                <option value="_____" disabled selected hidden></option>
+                                <option value="uz">Toshkent</option>
+                                <option value="us">Samarqand</option>
+                                <!-- More options... -->
+                            </select>
+                            <label for="expert">Ekspertiza turini tanlang</label>
+                        </div>
+                        <div class="form-group span-2">
+                            <textarea id="commit" name="commit" placeholder=" " required></textarea>
+                            <label for="commit">Izoh</label>
                         </div>
                     </div>
                 </form>
             </div>
             <div id="YuridikShaxs" class="tabcontent">
                 <form id="legalEntityForm" class="tabcontentform">
-                    <label><input type="checkbox" id="uzbekistanCitizen" name="uzbekistanCitizen" checked> O'zbekiston
-                        fuqarosi</label><br><br>
-                    <!-- Form for Yuridik Shaxs -->
-                    <div class="form-group">
-                        <input type="text" id="companyname" name="companyname" placeholder="Tashkilot nomi"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="companystir" name="companystir" placeholder="STIR"
-                            required>
-                    </div>
-                    <div class="form-group full-width">
-                        <input type="text" id="company" name="company" placeholder="Korxona manzilingiz" required>
-                    </div>
-                    <!-- Add other form fields as necessary -->
-                    <div class="form-group">
-                        <select id="courtType" name="courtType" required>
-                            <option value="" disabled selected>Sud turi *</option>
-                            <!-- Add options here -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="courtRegion" name="courtRegion" required>
-                            <option value="" disabled selected>Sud hududi *</option>
-                            <!-- Add options here -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="court" name="court" required>
-                            <option value="" disabled selected>Sud *</option>
-                            <!-- Add options here -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="paymentType" name="paymentType" required>
-                            <option value="" disabled selected>To'lov turi *</option>
-                            <!-- Add options here -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="paymentPurpose" name="paymentPurpose" required>
-                            <option value="" disabled selected>To'lov maqsadi *</option>
-                            <!-- Add options here -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="paymentAmount" name="paymentAmount" placeholder="To'lov miqdori"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <p>Qo‘shimcha ma’lumot</p>
-                    </div>
+                    <div class="tabcontentform">
+                        <div class="form-group">
+                            <input type="text" id="lastname" name="lastname" placeholder=" " required>
+                            <label for="lastname">Familiyangiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="firstname" name="firstname" placeholder=" " required>
+                            <label for="firstname">Ismingiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="fullname" name="fullname" placeholder=" " required>
+                            <label for="fullname">Sharifingiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="phonenumber" name="phonenumber" placeholder=" " required>
+                            <label for="phonenumber">Telefon raqamingiz</label>
+                        </div>
+                        <div class="form-group-info">
+                            Tashkilot haqida
+                        </div>
 
-                    <div class="form-group full-width">
-                        <textarea id="additionalInfo" name="additionalInfo"
-                            placeholder="To'lov haqida qo'shimcha ma'lumot" maxlength="100"></textarea>
-                    </div <!-- Add other form fields as necessary -->
+
+                        <div class="form-group">
+                            <input type="text" id="companyname" name="companyname" placeholder=" " required>
+                            <label for="companyname">Tashkilot nomi</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="companyaddress" name="companyaddress" placeholder=" " required>
+                            <label for="companyaddress">Tashkilot manzilingiz</label>
+                        </div>
+                        <div class="form-group span-2">
+                            <input type="text" id="profession" name="profession" placeholder=" " required>
+                            <label for="profession">Lavozimingiz</label>
+                        </div>
+                        <div class="form-group-info">
+                            Ekspertiza haqida
+                        </div>
+                        <div class="form-group span-2">
+                            <select id="experttype" name="experttype" required>
+                                <option value="_____" disabled selected hidden></option>
+                                <option value="aa">AA</option>
+                                <option value="ab">AB</option>
+                                <option value="ac">AC</option>
+                                <!-- More options... -->
+                            </select>
+                            <label for="experttype">Ekspertiza turini tanlang*</label>
+                        </div>
+
+                        <div class="form-group span-2">
+                            <textarea id="commit" name="commit" placeholder=" " required></textarea>
+                            <label for="commit">Izoh</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="Advakat" class="tabcontent">
+                <form id="lawyer" class="tabcontentform">
+                    <div class="tabcontentform">
+                        <div class="form-group">
+                            <input type="text" id="lastname" name="lastname" placeholder=" " required>
+                            <label for="lastname">Familiyangiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="firstname" name="firstname" placeholder=" " required>
+                            <label for="firstname">Ismingiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="fullname" name="fullname" placeholder=" " required>
+                            <label for="fullname">Sharifingiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="phonenumber" name="phonenumber" placeholder=" " required>
+                            <label for="phonenumber">Telefon raqamingiz</label>
+                        </div>
+                        <div class="form-group-info">
+                            Litsenziya haqida
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="text" id="position" name="position" placeholder=" " required>
+                            <label for="position">Lavozimingiz</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="licensedate" name="licensedate" placeholder=" " required>
+                            <label for="licensedate">Litsenziya olingan yil</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="licensetype" name="licensetype" placeholder=" " required>
+                            <label for="licensetype">Litsenziya turini kiriting</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="licensenumber" name="licensenumber" placeholder=" " required>
+                            <label for="licensenumber">Litsenziyangiz nechanchi sonli</label>
+                        </div>
+                        <div class="form-group-info">
+                            Ekspertiza haqida
+                        </div>
+                        <div class="form-group span-2">
+                            <select id="experttype" name="experttype" required>
+                                <option value="_____" disabled selected hidden></option>
+                                <option value="aa">AA</option>
+                                <option value="ab">AB</option>
+                                <option value="ac">AC</option>
+                                <!-- More options... -->
+                            </select>
+                            <label for="experttype">Ekspertiza turini tanlang*</label>
+                        </div>
+
+                        <div class="form-group span-2">
+                            <textarea id="commit" name="commit" placeholder=" " required></textarea>
+                            <label for="commit">Izoh</label>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="btn-group">
@@ -164,5 +543,46 @@
         </div>
     </div>
 </body>
+<script>
+    function openForm(evt, formName) {
+        var i, tabcontent, tablinks;
+
+        // Hide all tab contents
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove the active class from all tablinks
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab and add an active class to the button that opened the tab
+        document.getElementById(formName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // No need to trigger a click event since we set the default display in HTML
+    document.getElementById("JismoniyShaxs").style.display = "block";
+
+    function clearForm() {
+        document.getElementById('individualForm').reset();
+        document.getElementById('legalEntityForm').reset();
+    }
+
+    function submitForm() {
+        var formData;
+        if (document.querySelector('.tablinks.active').innerText === "Jismoniy shaxs") {
+            formData = $('#individualForm').serialize();
+        } else {
+            formData = $('#legalEntityForm').serialize();
+        }
+        // You can now submit formData using AJAX or any other method
+        console.log(formData);
+    }
+
+</script>
 
 </html>
